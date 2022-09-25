@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MauiApp1.MainPage">
+    <ScrollView>
+        <VerticalStackLayout Spacing="30">
+            <!--#region Accelerometer -->
+            <Button Margin="100,0,100,0" Text="Toggle Accelerometer" x:Name="btnToggleAccelerometer" Clicked="btnToggleAccelerometer_Clicked" />
+            <HorizontalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="accelLabel">Accelerometer</Label>
+                    <HorizontalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="accelLabelX">X:</Label>
+                            <Label x:Name="accelLabelY">Y:</Label>
+                            <Label x:Name="accelLabelZ">Z:</Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="accelX" />
+                            <Label x:Name="accelY" />
+                            <Label x:Name="accelZ" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <!--#endregion-->
+            <!--#region Compass -->
+            <Button Margin="100,0,100,0" Text="Toggle Compass" x:Name="btnToggleCompass" Clicked="btnToggleCompass_Clicked" />
+            <HorizontalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="compassLabel">Compass</Label>
+                    <HorizontalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="compassLabelDegrees">Degrees:</Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="compassDegrees" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <!--#endregion-->
+            <!--#region Gyroscope -->
+            <Button Margin="100,0,100,0" Text="Toggle Gyroscope" x:Name="btnToggleGyroscope" Clicked="btnToggleGyroscope_Clicked" />
+            <HorizontalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="gyroLabel">Gyroscope</Label>
+                    <HorizontalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="gyroLabelX">X:</Label>
+                            <Label x:Name="gyroLabelY">Y:</Label>
+                            <Label x:Name="gyroLabelZ">Z:</Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="gyroX" />
+                            <Label x:Name="gyroY" />
+                            <Label x:Name="gyroZ" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <!--#endregion-->
+            <!--#region Magnetometer -->
+            <Button Margin="100,0,100,0" Text="Toggle Magnetometer" x:Name="btnToggleMagnetometer" Clicked="btnToggleMagnetometer_Clicked" />
+            <HorizontalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="magnetLabel">Magnetometer</Label>
+                    <HorizontalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="magnetLabelX">X:</Label>
+                            <Label x:Name="magnetLabelY">Y:</Label>
+                            <Label x:Name="magnetLabelZ">Z:</Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="magnetX" />
+                            <Label x:Name="magnetY" />
+                            <Label x:Name="magnetZ" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <!--#endregion-->
+            <!--#region Orientation -->
+            <Button Margin="100,0,100,0" Text="Toggle Orientation" x:Name="btnToggleOrientation" Clicked="btnToggleOrientation_Clicked" />
+            <HorizontalStackLayout>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="orientationLabel">Orientation</Label>
+                    <HorizontalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="orientationLabelZ">Z:</Label>
+                            <Label x:Name="orientationLabelX">X:</Label>
+                            <Label x:Name="orientationLabelY">Y:</Label>
+                            <Label x:Name="orientationLabelW">W:</Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="orientationZ" />
+                            <Label x:Name="orientationX" />
+                            <Label x:Name="orientationY" />
+                            <Label x:Name="orientationW" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <!--#endregion-->
+
+            <!--#region Location -->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button Margin="10,0,10,0" Text="Start Location service" x:Name="btnStartLocationService" Clicked="btnStartLocationService_Clicked" />
+                <Button Margin="10,0,10,0" Text="Stop Location service" x:Name="btnStopLocationService" Clicked="btnStopLocationService_Clicked" />
+            </HorizontalStackLayout>
+            <!--#endregion-->
+
+            <!--#region Sensors -->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button Margin="10,0,10,0" Text="Start Sensors service" x:Name="btnStartSensorsService" Clicked="btnStartSensorsService_Clicked" />
+                <Button Margin="10,0,10,0" Text="Stop Sensors service" x:Name="btnStopSensorsService" Clicked="btnStopSensorsService_Clicked" />
+            </HorizontalStackLayout>
+            <!--#endregion-->
+
+            <Button Margin="100,0,100,0" Text="Upload DB" x:Name="btnUploadDb" Clicked="btnUploadDb_Clicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
