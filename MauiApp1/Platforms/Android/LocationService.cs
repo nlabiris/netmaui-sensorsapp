@@ -4,6 +4,7 @@ using Android.Locations;
 using Android.OS;
 using Android.Runtime;
 using AndroidX.Core.App;
+using Mapsui.UI.Maui;
 using MauiApp1.DataAccess;
 
 namespace MauiApp1.Services
@@ -16,6 +17,7 @@ namespace MauiApp1.Services
 
         }
 
+        //private static readonly Random rng = new Random(0);
         private static bool isServiceRunning;
         private LocationManager locationManager;
         private static Database database;
@@ -65,7 +67,8 @@ namespace MauiApp1.Services
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Network provider enabled: {locationManager.IsProviderEnabled(LocationManager.NetworkProvider)}");
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: GPS provider enabled: {locationManager.IsProviderEnabled(LocationManager.GpsProvider)}");
 
-            locationManager.RequestSingleUpdate(LocationManager.NetworkProvider, this, null);
+            //locationManager.RequestSingleUpdate(LocationManager.NetworkProvider, this, null);
+            locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, 10000, 1, this);
 
             return base.OnStartCommand(intent, flags, startId);
         }
@@ -80,7 +83,7 @@ namespace MauiApp1.Services
             isServiceRunning = true;
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Entered OnCreate");
             base.OnCreate();
-            #region Android-specific sensors implementation
+            #region Android-specific location implementation
             locationManager = (LocationManager)GetSystemService(LocationService);
             #endregion
         }
@@ -89,7 +92,7 @@ namespace MauiApp1.Services
         {
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Entered OnDestroy");
             isServiceRunning = false;
-            #region Android-specific sensors implementation
+            #region Android-specific location implementation
             locationManager.RemoveUpdates(this);
             #endregion
             base.OnDestroy();
@@ -112,22 +115,22 @@ namespace MauiApp1.Services
             return isServiceRunning;
         }
 
-        #region Android-specific sensors implementation
-
-        #region Location
-
-        public void StartRequestingLocationUpdates()
-        {
-            locationManager.RequestLocationUpdates(LocationManager.GpsProvider, 5000, 1, this);
-        }
-
-        public void StopRequestingLocationUpdates()
-        {
-            locationManager.RemoveUpdates(this);
-        }
+        #region Android-specific location implementation
 
         public void OnLocationChanged(Android.Locations.Location location)
         {
+            //var coordinates = new Dictionary<int, string>
+            //{
+            //    { 0, "38.0518394;23.7958184" },
+            //    { 1, "38.0505495;23.8050379" },
+            //    { 2, "38.0603702;23.808501" },
+            //    { 3, "38.0537261;23.8003922" },
+            //    { 4, "38.0537261;23.8003922" },
+            //    { 5, "38.0555079;23.7959239" }
+            //};
+            //var i = rng.Next(0, 6);
+            MessagingCenter.Send($"{location.Latitude};{location.Longitude}", nameof(OnLocationChanged));
+
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Latitude: {location.Latitude}, Longitude: {location.Longitude}, Provider: {location.Provider}");
         }
 
@@ -145,8 +148,6 @@ namespace MauiApp1.Services
         {
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: The provider {provider} has changed status to {status}");
         }
-
-        #endregion
 
         #endregion
     }

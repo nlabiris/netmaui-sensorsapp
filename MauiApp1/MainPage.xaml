@@ -101,13 +101,6 @@
             </HorizontalStackLayout>
             <!--#endregion-->
 
-            <!--#region Location -->
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Button Margin="10,0,10,0" Text="Start Location service" x:Name="btnStartLocationService" Clicked="btnStartLocationService_Clicked" />
-                <Button Margin="10,0,10,0" Text="Stop Location service" x:Name="btnStopLocationService" Clicked="btnStopLocationService_Clicked" />
-            </HorizontalStackLayout>
-            <!--#endregion-->
-
             <!--#region Sensors -->
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Button Margin="10,0,10,0" Text="Start Sensors service" x:Name="btnStartSensorsService" Clicked="btnStartSensorsService_Clicked" />

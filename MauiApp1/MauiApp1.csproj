@@ -53,12 +53,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Mapsui.Maui" Version="4.0.0-beta.5" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.2" />
 	  <PackageReference Include="SQLitePCLRaw.core" Version="2.1.2" />
 	  <PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.2" />
 	  <PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.1.2" />
 	  <PackageReference Include="SSH.NET" Version="2020.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="MapPage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 <!----></Project>

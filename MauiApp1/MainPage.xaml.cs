@@ -5,12 +5,11 @@ namespace MauiApp1;
 public partial class MainPage : ContentPage
 {
     private readonly ISensorsService sensorsService;
-    private readonly ILocationService locationService;
 
-    public MainPage(ISensorsService sensorsService, ILocationService locationService)
+    public MainPage(ISensorsService sensorsService)
 	{
         this.sensorsService = sensorsService;
-        this.locationService = locationService;
+        
         InitializeComponent();
     }
 
@@ -29,23 +28,6 @@ public partial class MainPage : ContentPage
     private void btnStopSensorsService_Clicked(object sender, EventArgs e)
     {
         sensorsService.StopService();
-    }
-
-    private void btnStartLocationService_Clicked(object sender, EventArgs e)
-    {
-        if (locationService.IsServiceRunning())
-        {
-            Application.Current.MainPage.DisplayAlert("Error", "Location service is already running", "OK");
-        }
-        else
-        {
-            locationService.StartService();
-        }
-    }
-
-    private void btnStopLocationService_Clicked(object sender, EventArgs e)
-    {
-        locationService.StopService();
     }
 
     private void btnUploadDb_Clicked(object sender, EventArgs e)

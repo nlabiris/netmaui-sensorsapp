@@ -1,4 +1,5 @@
 ﻿using MauiApp1.Services;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace MauiApp1;
 
@@ -9,7 +10,8 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .UseSkiaSharp()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -18,6 +20,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ISensorsService, SensorsService>();
         builder.Services.AddSingleton<ILocationService, LocationService>();
         builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<MapPage>();
         return builder.Build();
 	}
 }

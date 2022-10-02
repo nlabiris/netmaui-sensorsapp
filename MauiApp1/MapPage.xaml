@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:mapsui="clr-namespace:Mapsui.UI.Maui;assembly=Mapsui.UI.Maui" x:Class="MauiApp1.MapPage">
+    <VerticalStackLayout>
+        <mapsui:MapView x:Name="mapView" HeightRequest="500" Margin="0, 0, 0, 10"/>
+        <!--#region Location -->
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Margin="10,0,10,0" Text="Start Location service" x:Name="btnStartLocationService" Clicked="btnStartLocationService_Clicked" />
+            <Button Margin="10,0,10,0" Text="Stop Location service" x:Name="btnStopLocationService" Clicked="btnStopLocationService_Clicked" />
+        </HorizontalStackLayout>
+        <!--#endregion-->
+    </VerticalStackLayout>
+</ContentPage>
