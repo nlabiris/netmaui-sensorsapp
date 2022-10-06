@@ -5,8 +5,8 @@
             <!--#region Accelerometer -->
             <Button Margin="100,0,100,0" Text="Toggle Accelerometer" x:Name="btnToggleAccelerometer" Clicked="btnToggleAccelerometer_Clicked" />
             <HorizontalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="accelLabel">Accelerometer</Label>
+                <VerticalStackLayout Margin="20,0,0,0">
+                    <Label Margin="0,0,0,20" x:Name="accelLabel">Accelerometer</Label>
                     <HorizontalStackLayout>
                         <VerticalStackLayout>
                             <Label x:Name="accelLabelX">X:</Label>
@@ -25,8 +25,8 @@
             <!--#region Compass -->
             <Button Margin="100,0,100,0" Text="Toggle Compass" x:Name="btnToggleCompass" Clicked="btnToggleCompass_Clicked" />
             <HorizontalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="compassLabel">Compass</Label>
+                <VerticalStackLayout Margin="20,0,0,0">
+                    <Label Margin="0,0,0,20" x:Name="compassLabel">Compass</Label>
                     <HorizontalStackLayout>
                         <VerticalStackLayout>
                             <Label x:Name="compassLabelDegrees">Degrees:</Label>
@@ -41,8 +41,8 @@
             <!--#region Gyroscope -->
             <Button Margin="100,0,100,0" Text="Toggle Gyroscope" x:Name="btnToggleGyroscope" Clicked="btnToggleGyroscope_Clicked" />
             <HorizontalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="gyroLabel">Gyroscope</Label>
+                <VerticalStackLayout Margin="20,0,0,0">
+                    <Label Margin="0,0,0,20" x:Name="gyroLabel">Gyroscope</Label>
                     <HorizontalStackLayout>
                         <VerticalStackLayout>
                             <Label x:Name="gyroLabelX">X:</Label>
@@ -61,8 +61,8 @@
             <!--#region Magnetometer -->
             <Button Margin="100,0,100,0" Text="Toggle Magnetometer" x:Name="btnToggleMagnetometer" Clicked="btnToggleMagnetometer_Clicked" />
             <HorizontalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="magnetLabel">Magnetometer</Label>
+                <VerticalStackLayout Margin="20,0,0,0">
+                    <Label Margin="0,0,0,20" x:Name="magnetLabel">Magnetometer</Label>
                     <HorizontalStackLayout>
                         <VerticalStackLayout>
                             <Label x:Name="magnetLabelX">X:</Label>
@@ -81,8 +81,8 @@
             <!--#region Orientation -->
             <Button Margin="100,0,100,0" Text="Toggle Orientation" x:Name="btnToggleOrientation" Clicked="btnToggleOrientation_Clicked" />
             <HorizontalStackLayout>
-                <VerticalStackLayout VerticalOptions="Center">
-                    <Label x:Name="orientationLabel">Orientation</Label>
+                <VerticalStackLayout Margin="20,0,0,0">
+                    <Label Margin="0,0,0,20" x:Name="orientationLabel">Orientation</Label>
                     <HorizontalStackLayout>
                         <VerticalStackLayout>
                             <Label x:Name="orientationLabelZ">Z:</Label>
@@ -101,10 +101,36 @@
             </HorizontalStackLayout>
             <!--#endregion-->
 
-            <!--#region Sensors -->
+            <!--#region Orientation -->
+            <Button Margin="100,0,100,0" Text="Request location" x:Name="btnRequestLocation" Clicked="btnRequestLocation_Clicked" />
+            <HorizontalStackLayout>
+                <VerticalStackLayout Margin="20,0,0,0">
+                    <Label Margin="0,0,0,20" x:Name="locationLabel">Location</Label>
+                    <HorizontalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="locationLabelLat">Latitude:</Label>
+                            <Label x:Name="locationLabelLng">Longitude:</Label>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout>
+                            <Label x:Name="locationLat" />
+                            <Label x:Name="locationLng" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+            <!--#endregion-->
+
+            <!--#region Sensors service -->
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Button Margin="10,0,10,0" Text="Start Sensors service" x:Name="btnStartSensorsService" Clicked="btnStartSensorsService_Clicked" />
                 <Button Margin="10,0,10,0" Text="Stop Sensors service" x:Name="btnStopSensorsService" Clicked="btnStopSensorsService_Clicked" />
+            </HorizontalStackLayout>
+            <!--#endregion-->
+
+            <!--#region Location service -->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button Margin="10,0,10,0" Text="Start Location service" x:Name="btnStartLocationService" Clicked="btnStartLocationService_Clicked" />
+                <Button Margin="10,0,10,0" Text="Stop Location service" x:Name="btnStopLocationService" Clicked="btnStopLocationService_Clicked" />
             </HorizontalStackLayout>
             <!--#endregion-->
 

@@ -63,7 +63,6 @@ namespace MauiApp1.Services
             #endregion
 
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Notification setup done...");
-
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Network provider enabled: {locationManager.IsProviderEnabled(LocationManager.NetworkProvider)}");
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: GPS provider enabled: {locationManager.IsProviderEnabled(LocationManager.GpsProvider)}");
 
@@ -117,7 +116,7 @@ namespace MauiApp1.Services
 
         #region Android-specific location implementation
 
-        public void OnLocationChanged(Android.Locations.Location location)
+        public async void OnLocationChanged(Android.Locations.Location location)
         {
             //var coordinates = new Dictionary<int, string>
             //{
@@ -129,8 +128,18 @@ namespace MauiApp1.Services
             //    { 5, "38.0555079;23.7959239" }
             //};
             //var i = rng.Next(0, 6);
-            MessagingCenter.Send($"{location.Latitude};{location.Longitude}", nameof(OnLocationChanged));
-
+            //MessagingCenter.Send(coordinates[i], nameof(OnLocationChanged));
+            //MessagingCenter.Send($"{location.Latitude};{location.Longitude}", nameof(OnLocationChanged));
+            await Database.SaveLocationAsync(new Models.Location
+            {
+                Latitude = location.Latitude,
+                Longitude = location.Longitude,
+                Accuracy = location.Accuracy,
+                Altitude = location.Altitude,
+                Speed = location.Speed,
+                VerticalAccuracy = location.VerticalAccuracyMeters,
+                Created = DateTime.UtcNow
+            });
             System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Latitude: {location.Latitude}, Longitude: {location.Longitude}, Provider: {location.Provider}");
         }
 

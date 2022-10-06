@@ -171,8 +171,6 @@ namespace MauiApp1.Services
 
         #region Android-specific sensors implementation
 
-        #region Sensors
-
         public async void OnSensorChanged(SensorEvent e)
         {
             if (e.Sensor.Type == SensorType.Accelerometer)
@@ -221,8 +219,6 @@ namespace MauiApp1.Services
         {
 
         }
-
-        #endregion
 
         #endregion
 

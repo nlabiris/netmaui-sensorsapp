@@ -5,13 +5,16 @@ namespace MauiApp1;
 public partial class MainPage : ContentPage
 {
     private readonly ISensorsService sensorsService;
+    private readonly ILocationService locationService;
 
-    public MainPage(ISensorsService sensorsService)
+    public MainPage(ISensorsService sensorsService, ILocationService locationService)
 	{
         this.sensorsService = sensorsService;
-        
+        this.locationService = locationService;
         InitializeComponent();
     }
+
+    #region Android-specific sensors service
 
     private void btnStartSensorsService_Clicked(object sender, EventArgs e)
     {
@@ -34,6 +37,29 @@ public partial class MainPage : ContentPage
     {
         sensorsService.UploadDb();
     }
+
+    #endregion
+
+    #region Android-specific location service
+
+    private void btnStartLocationService_Clicked(object sender, EventArgs e)
+    {
+        if (locationService.IsServiceRunning())
+        {
+            Application.Current.MainPage.DisplayAlert("Error", "Location service is already running", "OK");
+        }
+        else
+        {
+            locationService.StartService();
+        }
+    }
+
+    private void btnStopLocationService_Clicked(object sender, EventArgs e)
+    {
+        locationService.StopService();
+    }
+
+    #endregion
 
     #region MAUI/Xamarin sensor related methods
 
@@ -205,40 +231,51 @@ public partial class MainPage : ContentPage
 
     #region Location
 
-    //public async Task GetCurrentLocation()
-    //{
-    //    try
-    //    {
-    //        isCheckingLocation = true;
-    //        GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
-    //        cancelTokenSource = new CancellationTokenSource();
-    //        Location location = await Geolocation.Default.GetLocationAsync(request, cancelTokenSource.Token);
+    private async void btnRequestLocation_Clicked(object sender, EventArgs e)
+    {
+        await GetCurrentLocation();
+    }
 
-    //        if (location != null)
-    //            System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-    //        Console.WriteLine();
-    //    }
-    //    // Catch one of the following exceptions:
-    //    //   FeatureNotSupportedException
-    //    //   FeatureNotEnabledException
-    //    //   PermissionException
-    //    catch (Exception ex)
-    //    {
-    //        // Unable to get location
-    //    }
-    //    finally
-    //    {
-    //        isCheckingLocation = false;
-    //    }
-    //}
+    private CancellationTokenSource cancelTokenSource;
+    private bool isCheckingLocation;
 
-    //public void CancelRequest()
-    //{
-    //    if (isCheckingLocation && cancelTokenSource != null && cancelTokenSource.IsCancellationRequested == false)
-    //    {
-    //        cancelTokenSource.Cancel();
-    //    }
-    //}
+    public async Task GetCurrentLocation()
+    {
+        try
+        {
+            isCheckingLocation = true;
+            GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+            cancelTokenSource = new CancellationTokenSource();
+            Location location = await Geolocation.Default.GetLocationAsync(request, cancelTokenSource.Token);
+
+            if (location != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"{DateTime.Now}: Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                locationLat.Text = location.Latitude.ToString();
+                locationLng.Text = location.Longitude.ToString();
+            }
+        }
+        // Catch one of the following exceptions:
+        //   FeatureNotSupportedException
+        //   FeatureNotEnabledException
+        //   PermissionException
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", "Unable to get location", "OK");
+        }
+        finally
+        {
+            isCheckingLocation = false;
+        }
+    }
+
+    public void CancelRequest()
+    {
+        if (isCheckingLocation && cancelTokenSource != null && cancelTokenSource.IsCancellationRequested == false)
+        {
+            cancelTokenSource.Cancel();
+        }
+    }
 
     #endregion
 
